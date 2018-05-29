@@ -1,0 +1,14 @@
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\videoLive.exe.config
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\videoLive.exe
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\videoLive.pdb
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\AForge.dll
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\AForge.Video.dll
+C:\Users\Leon\source\repos\videoLive\videoLive\bin\Debug\AForge.Video.xml
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.csprojAssemblyReference.cache
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.Form1.resources
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.Properties.Resources.resources
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.csproj.GenerateResource.cache
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.csproj.CoreCompileInputs.cache
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.csproj.CopyComplete
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.exe
+C:\Users\Leon\source\repos\videoLive\videoLive\obj\Debug\videoLive.pdb

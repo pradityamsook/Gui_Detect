@@ -20,14 +20,14 @@ namespace gui_client_00
 
     public partial class Form1 : Form
     {
-        public string var;
+        public string varVideoStream, varUrlDB;
 
         private VideoCapture videoPlay;
-        private FileConfig ini = new FileConfig(@"C:\Users\Leon\Documents\_config\config_position.ini");
+        private FileConfig ini = new FileConfig("C:\\config_position.ini");
 
-        private bool _canDraw, Box, Line1, Line2, Line3; 
+        public bool _canDraw, Box, Line1, Line2, Line3; 
         public bool _DrawLine1, _DrawLine2, _DrawLine3;
-        private int _startX, _startY, _endX, _endY, _line1Y, _line2Y, _line3Y;
+        public int _startX, _startY, _endX, _endY, _line1Y, _line2Y, _line3Y;
         private Rectangle _rect;
 
         private Mat _frame = new Mat();
@@ -36,6 +36,7 @@ namespace gui_client_00
         public int x, y, width, height, widthOfLine;
 
         
+
         public int x1, y1;
 
         
@@ -87,8 +88,8 @@ namespace gui_client_00
         /* This function is update of video play location of video and will send this update to button1_Click about event*/
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            var = textBox1.Text;
-            videoPlay = new VideoCapture(var);
+            varVideoStream = textBox1.Text;
+            videoPlay = new VideoCapture(varVideoStream);
             if (videoPlay != null && videoPlay.Ptr != IntPtr.Zero)
             {
                 videoPlay.Retrieve(_frame, 0);
@@ -136,7 +137,41 @@ namespace gui_client_00
             Line2 = false;
         }
         ///////////////////////////////////////////////////////
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileIni = new SaveFileDialog();
+            saveFileIni.Filter = "|*.ini";
+            saveFileIni.Title = "Save an .ini file";
+            saveFileIni.ShowDialog();
+            ini.FilePath = saveFileIni.FileName;
+            varUrlDB = textBox2.Text;
 
+            if (saveFileIni.FileName != "")
+            {
+                ini.Write("Position rectangle", "X1", Convert.ToString(Math.Min(_startX, _startX)));
+                ini.Write("Position rectangle", "Y1", Convert.ToString(Math.Min(_startY, _startY)));
+
+                ini.Write("Position rectangle", "X2", Convert.ToString(Math.Max(_endX, _endX)));
+                ini.Write("Position rectangle", "Y2", Convert.ToString(Math.Max(_endY, _endY)));
+
+                ini.Write("Position Line1", "X1", Convert.ToString(_startX));
+                ini.Write("Position Line1", "Y1", Convert.ToString(_line1Y));
+                ini.Write("Position Line1", "X2", Convert.ToString(widthOfLine));
+                ini.Write("Position Line1", "Y2", Convert.ToString(_line1Y));
+
+                ini.Write("Position Line2", "X1", Convert.ToString(_startX));
+                ini.Write("Position Line2", "Y1", Convert.ToString(_line2Y));
+                ini.Write("Position Line2", "X2", Convert.ToString(widthOfLine));
+                ini.Write("Position Line2", "Y2", Convert.ToString(_line2Y));
+
+                ini.Write("Position Line3", "X1", Convert.ToString(_startX));
+                ini.Write("Position Line3", "Y1", Convert.ToString(_line3Y));
+                ini.Write("Position Line3", "X2", Convert.ToString(widthOfLine));
+                ini.Write("Position Line3", "Y2", Convert.ToString(_line3Y));
+
+                ini.Write("URL Databse", "URL", varUrlDB);
+            }
+        }
         private void pictureBox1_paint(object sender, PaintEventArgs e)
         {
             ///////Update Box paint////////////////////////////////////////////////

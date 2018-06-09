@@ -20,7 +20,8 @@ namespace gui_client_00
 
     public partial class Form1 : Form
     {
-        public string varVideoStream, varUrlDB;
+        public string var; 
+        public string varUrlDB;
 
         private VideoCapture videoPlay;
         private FileConfig ini = new FileConfig("C:\\config_position.ini");
@@ -34,8 +35,12 @@ namespace gui_client_00
         private bool _captureProcess;
 
         public int x, y, width, height, widthOfLine;
+        public float widthOfVideo, heightOfVideo;
 
-        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
 
         public int x1, y1;
 
@@ -88,12 +93,14 @@ namespace gui_client_00
         /* This function is update of video play location of video and will send this update to button1_Click about event*/
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            varVideoStream = textBox1.Text;
-            videoPlay = new VideoCapture(varVideoStream);
+            var = textBox1.Text;
+            videoPlay = new VideoCapture(var);
             if (videoPlay != null && videoPlay.Ptr != IntPtr.Zero)
             {
                 videoPlay.Retrieve(_frame, 0);
                 pictureBox1.Image = _frame.Bitmap;
+                widthOfVideo = _frame.Size.Width;
+                heightOfVideo = _frame.Size.Height;
             }
         }
         /*****************************************************************************************************************/
@@ -169,7 +176,15 @@ namespace gui_client_00
                 ini.Write("Position Line3", "X2", Convert.ToString(widthOfLine));
                 ini.Write("Position Line3", "Y2", Convert.ToString(_line3Y));
 
-                ini.Write("URL Databse", "URL", varUrlDB);
+                if (varUrlDB != "")
+                {
+                    ini.Write("URL Databse", "URL", varUrlDB);
+                }
+                else
+                {
+                    ini.Write("URL Databse", "URL", "No URL Database");
+                }
+                
             }
         }
         private void pictureBox1_paint(object sender, PaintEventArgs e)

@@ -155,26 +155,26 @@ namespace gui_client_00
 
             if (saveFileIni.FileName != "")
             {
-                ini.Write("Position rectangle", "X1", Convert.ToString(Math.Min(_startX, _startX)));
-                ini.Write("Position rectangle", "Y1", Convert.ToString(Math.Min(_startY, _startY)));
+                ini.Write("Position rectangle", "X1", Convert.ToString(Math.Min(_startX - _startX, _startX - _startX)));
+                ini.Write("Position rectangle", "Y1", Convert.ToString(Math.Min(_startY - _startY, _startY - _startY)));
 
-                ini.Write("Position rectangle", "X2", Convert.ToString(Math.Max(_endX, _endX)));
-                ini.Write("Position rectangle", "Y2", Convert.ToString(Math.Max(_endY, _endY)));
+                ini.Write("Position rectangle", "X2", Convert.ToString(Math.Max(_endX - _startX, _endX - _startX)));
+                ini.Write("Position rectangle", "Y2", Convert.ToString(Math.Max(_endY - _startY, _endY - _startY)));
 
-                ini.Write("Position Line1", "X1", Convert.ToString(_startX));
-                ini.Write("Position Line1", "Y1", Convert.ToString(_line1Y));
-                ini.Write("Position Line1", "X2", Convert.ToString(widthOfLine));
-                ini.Write("Position Line1", "Y2", Convert.ToString(_line1Y));
+                ini.Write("Position Line1", "X1", Convert.ToString(_startX - _startX));
+                ini.Write("Position Line1", "Y1", Convert.ToString(_line1Y - _startY));
+                ini.Write("Position Line1", "X2", Convert.ToString(widthOfLine - _startX));
+                ini.Write("Position Line1", "Y2", Convert.ToString(_line1Y - _startY));
 
-                ini.Write("Position Line2", "X1", Convert.ToString(_startX));
-                ini.Write("Position Line2", "Y1", Convert.ToString(_line2Y));
-                ini.Write("Position Line2", "X2", Convert.ToString(widthOfLine));
-                ini.Write("Position Line2", "Y2", Convert.ToString(_line2Y));
+                ini.Write("Position Line2", "X1", Convert.ToString(_startX - _startX));
+                ini.Write("Position Line2", "Y1", Convert.ToString(_line2Y - _startY));
+                ini.Write("Position Line2", "X2", Convert.ToString(widthOfLine - _startX));
+                ini.Write("Position Line2", "Y2", Convert.ToString(_line2Y - _startY));
 
-                ini.Write("Position Line3", "X1", Convert.ToString(_startX));
-                ini.Write("Position Line3", "Y1", Convert.ToString(_line3Y));
-                ini.Write("Position Line3", "X2", Convert.ToString(widthOfLine));
-                ini.Write("Position Line3", "Y2", Convert.ToString(_line3Y));
+                ini.Write("Position Line3", "X1", Convert.ToString(_startX - _startX));
+                ini.Write("Position Line3", "Y1", Convert.ToString(_line3Y - _startY));
+                ini.Write("Position Line3", "X2", Convert.ToString(widthOfLine - _startX));
+                ini.Write("Position Line3", "Y2", Convert.ToString(_line3Y - _startY));
 
                 if (varUrlDB != "")
                 {

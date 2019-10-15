@@ -20,13 +20,15 @@ namespace gui_client_00
 
     public partial class Form1 : Form
     {
-        public string var; 
+        public string var;
         public string varUrlDB;
+
+        public Color BigPixel;
 
         private VideoCapture videoPlay;
         private FileConfig ini = new FileConfig("C:\\config_position.ini");
 
-        public bool _canDraw, Box, Line1, Line2, Line3; 
+        public bool _canDraw, Box, Line1, Line2, Line3;
         public bool _DrawLine1, _DrawLine2, _DrawLine3;
         public int _startX, _startY, _endX, _endY, _line1Y, _line2Y, _line3Y;
         private Rectangle _rect;
@@ -37,6 +39,50 @@ namespace gui_client_00
         public int x, y, width, height, widthOfLine;
         public float widthOfVideo, heightOfVideo;
 
+        public Bitmap bitmap;
+        private OpenFileDialog openFileDialog01 = new OpenFileDialog();
+
+        private void chooseImageButton_Click(object sender, EventArgs e)
+        {
+            int size = -1;
+            DialogResult result = openFileDialog01.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+
+                string file = openFileDialog01.FileName;
+                Bitmap imgBinary = new Bitmap(file);
+                int width = imgBinary.Width;
+                int height = imgBinary.Height;
+                Color p;
+
+                for (int y = 0; y < height; y++)
+                {
+                    for (int x = 0; x < width; x++)
+                    {
+                        p = imgBinary.GetPixel(x, y);
+                        int a = p.A;
+                        int r = p.R;
+                        int g = p.G;
+                        int b = p.B;
+                        int avg = (int)(r + g + b) / 3;
+                        avg = avg < 128 ? 0 : 255;
+                        imgBinary.SetPixel(x, y, Color.FromArgb(a, r, avg, avg));
+                    }
+                }
+                pictureBox1.Image = imgBinary;
+                //pictureBox1.Size = new System.Drawing.Size(1200, 1200);
+                pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            }
+            Console.WriteLine(size);
+            Console.WriteLine(result);
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -44,13 +90,11 @@ namespace gui_client_00
 
         public int x1, y1;
 
-        
-
         public Form1()
         {
             InitializeComponent();
             CvInvoke.UseOpenCL = false;
-       
+
         }
 
         private void Process(object sender, EventArgs e)
@@ -90,7 +134,8 @@ namespace gui_client_00
 
         }
 
-        /* This function is update of video play location of video and will send this update to button1_Click about event*/
+        /* This function is update of video play location of video 
+         * and function is will be send this update to button1_Click about event. */
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             var = textBox1.Text;
@@ -103,11 +148,11 @@ namespace gui_client_00
                 heightOfVideo = _frame.Size.Height;
             }
         }
-        /*****************************************************************************************************************/
+        /*************************************************************/
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+      
         }
 
         /////////////// This function is Box //////////////////
@@ -184,7 +229,7 @@ namespace gui_client_00
                 {
                     ini.Write("URL Databse", "URL", "No URL Database");
                 }
-                
+
             }
         }
         private void pictureBox1_paint(object sender, PaintEventArgs e)
@@ -258,7 +303,7 @@ namespace gui_client_00
                 _line3Y = e.Y;
             }
 
-            
+
             Refresh();
             label1.Text = "" + Math.Min(_startX, e.X) + ", " + Math.Min(_startY, e.Y);
         }
@@ -299,6 +344,24 @@ namespace gui_client_00
                 label1.Text = "" + Math.Max(_endX, e.X) + "," + Math.Max(_endY, e.Y);
             }
         }
-      
+
+        private void mousePointColor(object sender, MouseEventArgs e)
+        {
+            double windowX = e.X;
+            double windowY = e.Y;
+            double controlWidth = Width;
+            double controlHeight = Height;
+            double imageWidth = bitmap.Width;
+            double imageHeight = bitmap.Height;
+
+            bitmap = new Bitmap(var);
+
+            Color pixel = bitmap.GetPixel(
+                   (int)(windowX * bitmap.Width / controlWidth),
+                   (int)(windowY * bitmap.Height / controlHeight));
+            System.Diagnostics.Debug.WriteLine(pixel);
+
+            Console.WriteLine(pixel);
+        }
     }
 }

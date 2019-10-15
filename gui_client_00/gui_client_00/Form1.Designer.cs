@@ -39,6 +39,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.ChooseImageButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,10 +65,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlText;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 87);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 97);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1000, 563);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(1000, 500);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -151,12 +153,29 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "URL Cloud database";
             // 
+            // ChooseImageButton
+            // 
+            this.ChooseImageButton.Location = new System.Drawing.Point(1070, 637);
+            this.ChooseImageButton.Name = "ChooseImageButton";
+            this.ChooseImageButton.Size = new System.Drawing.Size(99, 23);
+            this.ChooseImageButton.TabIndex = 14;
+            this.ChooseImageButton.Text = "เลือกรูปภาพ";
+            this.ChooseImageButton.UseVisualStyleBackColor = true;
+            this.ChooseImageButton.Click += new System.EventHandler(this.chooseImageButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1206, 661);
+            this.ClientSize = new System.Drawing.Size(1206, 741);
+            this.Controls.Add(this.ChooseImageButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button6);
@@ -169,6 +188,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -189,6 +209,8 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ChooseImageButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

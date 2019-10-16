@@ -41,6 +41,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ChooseImageButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label_LAB = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,7 +130,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1070, 253);
+            this.button6.Location = new System.Drawing.Point(1070, 289);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(99, 23);
             this.button6.TabIndex = 11;
@@ -168,6 +169,17 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // label_LAB
+            // 
+            this.label_LAB.AutoSize = true;
+            this.label_LAB.BackColor = System.Drawing.Color.MintCream;
+            this.label_LAB.Location = new System.Drawing.Point(1093, 249);
+            this.label_LAB.Name = "label_LAB";
+            this.label_LAB.Size = new System.Drawing.Size(48, 13);
+            this.label_LAB.TabIndex = 15;
+            this.label_LAB.Text = "ค่าสี LAB";
+            this.label_LAB.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +187,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1206, 741);
+            this.Controls.Add(this.label_LAB);
             this.Controls.Add(this.ChooseImageButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
@@ -211,6 +224,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ChooseImageButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label_LAB;
     }
 }
 

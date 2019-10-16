@@ -55,18 +55,18 @@ namespace gui_client_00
                 int height = imgBinary.Height;
                 Color p;
 
-                for (int y = 0; y < height; y++)
+                for (int _y = 0; _y < height; _y++)
                 {
-                    for (int x = 0; x < width; x++)
+                    for (int _x = 0; _x < width; _x++)
                     {
-                        p = imgBinary.GetPixel(x, y);
+                        p = imgBinary.GetPixel(_x, _y);
                         int a = p.A;
                         int r = p.R;
                         int g = p.G;
                         int b = p.B;
                         int avg = (int)(r + g + b) / 3;
                         avg = avg < 128 ? 0 : 255;
-                        imgBinary.SetPixel(x, y, Color.FromArgb(a, r, avg, avg));
+                        imgBinary.SetPixel(_x, _y, Color.FromArgb(a, r, avg, avg));
                     }
                 }
                 pictureBox1.Image = imgBinary;
@@ -74,11 +74,17 @@ namespace gui_client_00
                 pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
 
             }
+           
             Console.WriteLine(size);
             Console.WriteLine(result);
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
@@ -323,6 +329,19 @@ namespace gui_client_00
                 _rect = new Rectangle(x, y, width, height);
                 Refresh();
             }
+
+            /*******************************/
+            // Have problem in this condition//
+            else
+            {
+                MouseEventArgs rato = e;
+                Bitmap bmp = (Bitmap)pictureBox1.Image;
+                int x = rato.X * bmp.Width / pictureBox1.Width;
+                int y = rato.Y * bmp.Height / pictureBox1.Height;
+                Color c = bmp.GetPixel(x, y);
+                label_LAB.Text = c.ToString();
+                Refresh();
+            }
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -345,23 +364,10 @@ namespace gui_client_00
             }
         }
 
-        private void mousePointColor(object sender, MouseEventArgs e)
+        private void mouseMove(object sender, MouseEventArgs e)
         {
-            double windowX = e.X;
-            double windowY = e.Y;
-            double controlWidth = Width;
-            double controlHeight = Height;
-            double imageWidth = bitmap.Width;
-            double imageHeight = bitmap.Height;
-
-            bitmap = new Bitmap(var);
-
-            Color pixel = bitmap.GetPixel(
-                   (int)(windowX * bitmap.Width / controlWidth),
-                   (int)(windowY * bitmap.Height / controlHeight));
-            System.Diagnostics.Debug.WriteLine(pixel);
-
-            Console.WriteLine(pixel);
+            
+            Refresh();
         }
     }
 }

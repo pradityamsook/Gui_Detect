@@ -41,6 +41,7 @@ namespace gui_client_00
 
         public Bitmap bitmap;
         private OpenFileDialog openFileDialog01 = new OpenFileDialog();
+        public string file;
 
         private void chooseImageButton_Click(object sender, EventArgs e)
         {
@@ -49,27 +50,27 @@ namespace gui_client_00
             if (result == DialogResult.OK)
             {
 
-                string file = openFileDialog01.FileName;
-                Bitmap imgBinary = new Bitmap(file);
-                int width = imgBinary.Width;
-                int height = imgBinary.Height;
+                file = openFileDialog01.FileName;
+                bitmap = new Bitmap(file);
+                int width = bitmap.Width;
+                int height = bitmap.Height;
                 Color p;
 
                 for (int _y = 0; _y < height; _y++)
                 {
                     for (int _x = 0; _x < width; _x++)
                     {
-                        p = imgBinary.GetPixel(_x, _y);
+                        p = bitmap.GetPixel(_x, _y);
                         int a = p.A;
                         int r = p.R;
                         int g = p.G;
                         int b = p.B;
                         int avg = (int)(r + g + b) / 3;
                         avg = avg < 128 ? 0 : 255;
-                        imgBinary.SetPixel(_x, _y, Color.FromArgb(a, r, avg, avg));
+                        bitmap.SetPixel(_x, _y, Color.FromArgb(a, r, avg, avg));
                     }
                 }
-                pictureBox1.Image = imgBinary;
+                pictureBox1.Image = bitmap;
                 //pictureBox1.Size = new System.Drawing.Size(1200, 1200);
                 pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
 
@@ -327,19 +328,6 @@ namespace gui_client_00
                 height = Math.Max(_startY, e.Y) - Math.Min(_startY, e.Y);
 
                 _rect = new Rectangle(x, y, width, height);
-                Refresh();
-            }
-
-            /*******************************/
-            // Have problem in this condition//
-            else
-            {
-                MouseEventArgs rato = e;
-                Bitmap bmp = (Bitmap)pictureBox1.Image;
-                int x = rato.X * bmp.Width / pictureBox1.Width;
-                int y = rato.Y * bmp.Height / pictureBox1.Height;
-                Color c = bmp.GetPixel(x, y);
-                label_LAB.Text = c.ToString();
                 Refresh();
             }
         }
